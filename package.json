@@ -1,0 +1,12 @@
+{
+  "name": "dingtalk-ai-tingji-static",
+  "private": true,
+  "version": "1.0.0",
+  "description": "钉钉 AI 听记 — 静态演示站（无构建链）",
+  "scripts": {
+    "dev": "live-server --port=5173 --open=/index.html --watch=."
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

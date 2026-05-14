@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>钉钉 AI 听记</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" data-site-header>
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="index.html">
+          <img
+            class="site-header__brand-img"
+            src="assets/images/钉钉.png"
+            alt="钉钉 · AI时代的工作方式"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="site-nav site-nav--desktop" aria-label="主导航">
+          <a class="site-nav__link" href="#">
+            <span>悟空</span>
+            <span class="nav-badge nav-badge--beta" translate="no">Beta</span>
+          </a>
+          <a class="site-nav__link site-nav__link--dropdown" href="#">
+            <span>产品功能</span>
+            <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+              <path
+                d="M1.5 3.25L6 7.75L10.5 3.25"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a class="site-nav__link site-nav__link--dropdown" href="#">
+            <span>案例与方案</span>
+            <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+              <path
+                d="M1.5 3.25L6 7.75L10.5 3.25"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a class="site-nav__link site-nav__link--dropdown" href="#">
+            <span>超级服务</span>
+            <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+              <path
+                d="M1.5 3.25L6 7.75L10.5 3.25"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a class="site-nav__link site-nav__link--dropdown" href="#">
+            <span>开放平台</span>
+            <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+              <path
+                d="M1.5 3.25L6 7.75L10.5 3.25"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a class="site-nav__link" href="#">官方商城</a>
+        </nav>
+
+        <div class="site-header__toolbar">
+          <button
+            type="button"
+            class="site-header__phone"
+            aria-label="电话咨询"
+            title="电话咨询"
+          >
+            <span class="site-header__phone-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M0.515057 1.74574L1.94303 0.319115C2.04376 0.217941 2.16349 0.137667 2.29533 0.0829034C2.42718 0.0281397 2.56855 -3.42172e-05 2.71132 3.11868e-08C3.00227 3.11868e-08 3.2758 0.11397 3.48095 0.319115L5.01752 1.85569C5.1187 1.95642 5.19897 2.07615 5.25373 2.208C5.3085 2.33984 5.33667 2.48121 5.33664 2.62398C5.33664 2.91494 5.22267 3.18847 5.01752 3.39361L3.89392 4.51722C4.15693 5.09693 4.5226 5.62431 4.97328 6.07391C5.42282 6.52568 5.95016 6.89268 6.52997 7.15729L7.65357 6.03368C7.7543 5.93251 7.87403 5.85223 8.00588 5.79747C8.13772 5.74271 8.27909 5.71453 8.42186 5.71457C8.71282 5.71457 8.98634 5.82854 9.19149 6.03368L10.7294 7.56892C10.8307 7.66983 10.911 7.78978 10.9658 7.92187C11.0206 8.05395 11.0487 8.19556 11.0485 8.33855C11.0485 8.6295 10.9346 8.90303 10.7294 9.10818L9.30412 10.5335C8.97696 10.862 8.5251 11.0483 8.06118 11.0483C7.9633 11.0483 7.86944 11.0403 7.77693 11.0242C5.9695 10.7265 4.17683 9.76518 2.73009 8.31978C1.28469 6.87571 0.32466 5.08438 0.0229759 3.2716C-0.0681992 2.71784 0.115493 2.14799 0.515057 1.74574Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </button>
+          <button type="button" class="site-header__toolbar-text">登录</button>
+          <button type="button" class="site-header__toolbar-text">下载钉钉</button>
+          <div class="site-header__cta-pair">
+            <button type="button" class="btn-header-outline">免费预约</button>
+            <button type="button" class="btn-header-primary">注册钉钉</button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="site-header__toggle"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="site-nav-mobile"
+          aria-label="打开菜单"
+        >
+          <span class="site-header__toggle-icon" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+      </div>
+
+      <nav
+        class="site-nav site-nav--mobile"
+        id="site-nav-mobile"
+        aria-label="主导航（移动端）"
+      >
+        <a class="site-nav__link" href="#">
+          <span>悟空</span>
+          <span class="nav-badge nav-badge--beta" translate="no">Beta</span>
+        </a>
+        <a class="site-nav__link site-nav__link--dropdown" href="#">
+          <span>产品功能</span>
+          <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+            <path
+              d="M1.5 3.25L6 7.75L10.5 3.25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a class="site-nav__link site-nav__link--dropdown" href="#">
+          <span>案例与方案</span>
+          <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+            <path
+              d="M1.5 3.25L6 7.75L10.5 3.25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a class="site-nav__link site-nav__link--dropdown" href="#">
+          <span>超级服务</span>
+          <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+            <path
+              d="M1.5 3.25L6 7.75L10.5 3.25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a class="site-nav__link site-nav__link--dropdown" href="#">
+          <span>开放平台</span>
+          <svg class="site-nav__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+            <path
+              d="M1.5 3.25L6 7.75L10.5 3.25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a class="site-nav__link" href="#">官方商城</a>
+        <div class="site-nav--mobile__toolbar">
+          <button type="button" class="site-header__toolbar-text site-header__toolbar-text--block">
+            登录
+          </button>
+          <button type="button" class="site-header__toolbar-text site-header__toolbar-text--block">
+            下载钉钉
+          </button>
+          <div class="site-header__cta-pair site-header__cta-pair--stack">
+            <button type="button" class="btn-header-outline btn-header-outline--block">免费预约</button>
+            <button type="button" class="btn-header-primary btn-header-primary--block">注册钉钉</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="hero">
+        <div class="hero__bg" aria-hidden="true">
+          <img
+            class="hero__bg-img"
+            src="assets/images/Group%201.png"
+            width="4320"
+            height="3763"
+            alt=""
+            decoding="async"
+          />
+        </div>
+
+        <div class="hero-floats" aria-hidden="true">
+          <div class="hero-float hero-float--triangle" data-hero-float data-float-rate="-0.42">
+            <img src="assets/images/元素1.png" width="1298" height="1090" alt="" decoding="async" />
+          </div>
+          <div class="hero-float hero-float--left-card" data-hero-float data-float-rate="-0.58">
+            <img src="assets/images/元素2.png" width="710" height="850" alt="" decoding="async" />
+          </div>
+          <div class="hero-float hero-float--spark" data-hero-float data-float-rate="-0.32">
+            <img src="assets/images/元素3.png" width="512" height="557" alt="" decoding="async" />
+          </div>
+          <div class="hero-float hero-float--right-card" data-hero-float data-float-rate="-0.48">
+            <img src="assets/images/元素4.png" width="710" height="850" alt="" decoding="async" />
+          </div>
+        </div>
+
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <h1 class="hero__title">
+              <span class="hero__title-prefix">AI听记：</span><span class="hero__title-gradient">AI时代</span><span class="hero__title-suffix">的记录方式</span>
+            </h1>
+            <p class="hero__lead">
+              AI听记应用于会议纪要、课程培训、面试访谈、客户拜访等场景，提供实时转写、翻译、智能识别发言人、纪要总结、待办事项总结等能力，持续提升工作与学习效率。
+            </p>
+            <div class="hero__cta">
+              <button type="button" class="btn-hero-primary">立即体验</button>
+              <button type="button" class="btn-hero-secondary">免费咨询</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-video-scroll-zone" data-hero-video-scroll-zone>
+          <div class="container hero-video-scroll-zone__inner">
+            <div class="hero-video-sticky" data-hero-video-sticky>
+              <div class="hero-video" data-video-wrap>
+                <div class="hero-video__frame">
+                  <div class="hero-video__inner">
+                    <video
+                      class="hero-video__player"
+                      controls
+                      playsinline
+                      autoplay
+                      muted
+                      loop
+                      preload="auto"
+                      poster="assets/images/hero-poster.png"
+                    >
+                      <source src="assets/videos/hero.mp4" type="video/mp4" />
+                      您的浏览器不支持 HTML5 视频。请使用 Chrome / Edge / Safari 等现代浏览器。
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--ecosystem"
+        id="ecosystem"
+        data-reveal
+        aria-label="钉钉会议与钉钉电话"
+      >
+        <div class="container">
+          <div class="section__media">
+            <div class="section__media-inner">
+              <img
+                src="assets/images/figma-ecosystem-mockup-352-1509.png"
+                width="2200"
+                height="1400"
+                alt="钉钉会议与办公生态展示"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--cards"
+        id="feature-cards"
+        data-reveal
+        aria-labelledby="cards-title"
+      >
+        <div class="container">
+          <div class="section__intro">
+            <h2 id="cards-title">场景化能力，一眼看懂</h2>
+            <p>
+              会议、办公与听记能力组合呈现，帮助你快速理解产品价值与使用路径。
+            </p>
+          </div>
+          <div class="section__card-board">
+            <img
+              src="assets/images/figma-cards-430-1260.png"
+              width="1440"
+              height="900"
+              alt="AI 听记场景卡片"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--transcription"
+        id="transcription"
+        data-reveal
+        aria-labelledby="transcription-title"
+      >
+        <div class="container">
+          <p class="kicker">语音转文字</p>
+          <h2 id="transcription-title" class="block-title">
+            语音转文字，精准记录会议全程
+          </h2>
+          <div class="card-grid card-grid--3">
+            <article class="feature-card">
+              <h3>全量记录逐字稿</h3>
+              <p>视频会议、直播、本地音视频等，精准转写为逐字稿。</p>
+            </article>
+            <article class="feature-card">
+              <h3>一键多语言翻译</h3>
+              <p>支持79+种语音转写翻译，轻松打破跨国沟通壁垒。</p>
+            </article>
+            <article class="feature-card">
+              <h3>智能区分发言人</h3>
+              <p>多人共用麦克风？智能声纹识别，精准区分不同说话人。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--summary"
+        id="summary"
+        data-reveal
+        aria-labelledby="summary-title"
+      >
+        <div class="container grid-2">
+          <div>
+            <p class="kicker">智能纪要</p>
+            <h2 id="summary-title" class="block-title">
+              智能纪要，1分钟掌握会议重点
+            </h2>
+            <p class="text-lead">
+              智能提炼核心内容，自动生成图文摘要；自动识别话题段落，生成章节标题与纪要；并智能识别待办事项，明确责任人与截止时间。
+            </p>
+            <button type="button" class="btn-dark-pill">了解智能纪要</button>
+          </div>
+          <div class="media-frame">
+            <img
+              src="assets/images/figma-frame-475-1340.png"
+              width="360"
+              height="1200"
+              alt="智能纪要等功能视觉长图"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--scenarios"
+        id="scenarios"
+        data-reveal
+        aria-labelledby="scenarios-title"
+      >
+        <div class="container">
+          <div class="section__intro">
+            <h2 id="scenarios-title">场景全覆盖，记录更高效</h2>
+            <p>
+              面向专业术语、典型业务场景与组织流程，提供更稳、更省心的记录体验。
+            </p>
+          </div>
+          <div class="scenario-grid">
+            <article class="scenario-card scenario-card--a">
+              <h3>专业热词精准识别</h3>
+              <p>深度优化法律、医疗、金融等专业术语，保障内容准确性。</p>
+            </article>
+            <article class="scenario-card scenario-card--b">
+              <h3>多场景摘要模板</h3>
+              <p>智能识别会议、面试、客户拜访场景，关键信息清晰呈现。</p>
+            </article>
+            <article class="scenario-card scenario-card--c">
+              <h3>灵活定制模板</h3>
+              <p>自由编辑模板字段，轻松适配企业流程，提升协作效率。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--pricing"
+        id="pricing"
+        data-reveal
+        aria-labelledby="pricing-title"
+      >
+        <div class="container">
+          <div class="section__intro">
+            <h2 id="pricing-title">立即使用 AI 听记，按需选择版本</h2>
+            <p>
+              个人与企业均可使用；以下为常见档位摘要，完整对比见设计稿导出的对照表。
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="price-card">
+              <div class="price-card__row">
+                <span class="price-card__price">￥0</span>
+                <span class="price-card__sub">基础功能试用体验</span>
+              </div>
+              <h3>标准会员</h3>
+              <ul>
+                <li>300分钟/月 转写时长</li>
+                <li>5篇/月 图文纪要</li>
+                <li>30次/月 AI问答</li>
+              </ul>
+              <button type="button">选择此版本</button>
+            </article>
+
+            <article class="price-card price-card--highlight">
+              <div class="price-card__row">
+                <span class="price-card__price">￥59</span>
+                <span class="price-card__sub">/人/月</span>
+              </div>
+              <h3>高级会员</h3>
+              <ul>
+                <li>3000分钟/月 转写时长</li>
+                <li>50篇/月 图文纪要</li>
+                <li>300次/月 AI问答</li>
+              </ul>
+              <button type="button">选择此版本</button>
+            </article>
+
+            <article class="price-card">
+              <div class="price-card__row">
+                <span class="price-card__price">￥119</span>
+                <span class="price-card__sub">/人/月</span>
+              </div>
+              <h3>旗舰会员</h3>
+              <ul>
+                <li>无限量 转写时长</li>
+                <li>不限篇数 图文纪要</li>
+                <li>不限次数 AI问答</li>
+              </ul>
+              <button type="button">选择此版本</button>
+            </article>
+          </div>
+
+          <div class="pricing-table-wrap">
+            <img
+              src="assets/images/figma-pricing-475-1521.png"
+              width="1440"
+              height="900"
+              alt="版本与功能权益详细对比"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-cta" id="contact" data-reveal>
+        <div class="footer-cta__glow1" aria-hidden="true"></div>
+        <div class="footer-cta__glow2" aria-hidden="true"></div>
+        <div class="container footer-cta__inner">
+          <h2>立即使用 AI 听记，AI 时代的记录方式</h2>
+          <p class="footer-cta__lead">
+            帮助文档、下载钉钉与在线客服入口与官网信息架构一致，便于用户随时获得支持。
+          </p>
+          <div class="footer-cta__actions">
+            <button type="button" class="btn-footer-solid">立即体验</button>
+            <button type="button" class="btn-footer-outline">下载钉钉</button>
+          </div>
+
+          <div class="footer-dock">
+            <div class="footer-dock__links">
+              <a href="#pricing"><span class="icon" aria-hidden="true">¥</span>查看定价</a>
+              <a href="#"><span class="icon" aria-hidden="true">?</span>帮助中心</a>
+              <a href="#"><span class="icon" aria-hidden="true">⌘</span>在线客服</a>
+              <a href="#"><span class="icon" aria-hidden="true">📖</span>操作手册</a>
+            </div>
+          </div>
+
+          <p class="footer-cta__copy">© 2026 钉钉 AI 听记</p>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="float-dock" aria-label="快捷入口">
+      <a class="float-dock__link" href="#pricing">
+        <span class="float-dock__icon" aria-hidden="true"></span>
+        查看定价
+      </a>
+      <a class="float-dock__link" href="#">
+        <span class="float-dock__icon" aria-hidden="true"></span>
+        帮助中心
+      </a>
+      <a class="float-dock__link" href="#">
+        <span class="float-dock__icon" aria-hidden="true"></span>
+        在线客服
+      </a>
+      <a class="float-dock__link" href="#">
+        <span class="float-dock__icon" aria-hidden="true"></span>
+        操作手册
+      </a>
+    </aside>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
