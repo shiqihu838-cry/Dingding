@@ -71,6 +71,11 @@ video {
   display: block;
 }
 
+img[alt=''] {
+  color: transparent;
+  font-size: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;

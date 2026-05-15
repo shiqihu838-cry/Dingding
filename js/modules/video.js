@@ -6,18 +6,40 @@ export function initVideo() {
   if (!video) return
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let hasRequestedPlay = false
 
   const startMutedAutoplay = () => {
     if (reduce.matches) {
       video.pause()
       return
     }
+    if (hasRequestedPlay) return
+    hasRequestedPlay = true
     video.muted = true
-    void video.play().catch(() => {})
+    video.autoplay = true
+    video.preload = 'auto'
+    void video.play().catch(() => {
+      hasRequestedPlay = false
+    })
   }
 
-  if (video.readyState >= 2) startMutedAutoplay()
-  else video.addEventListener('loadeddata', startMutedAutoplay, { once: true })
+  startMutedAutoplay()
+
+  if (video.readyState < 2) {
+    video.addEventListener('loadeddata', startMutedAutoplay, { once: true })
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return
+        startMutedAutoplay()
+        io.disconnect()
+      },
+      { rootMargin: '35% 0px' },
+    )
+    io.observe(wrap)
+  }
 
   reduce.addEventListener('change', startMutedAutoplay)
 

@@ -2,15 +2,15 @@
 
 /* 三屏底图分别对应 bg1 / bg2 / bg3；区块本身 100vw breakout，背景 cover 横向贴齐视口 */
 #feature-transcribe {
-  --fs-bg: url('../../assets/images/bg1.png');
+  --fs-bg: url('../../assets/images/bg1.webp');
 }
 
 #feature-summary {
-  --fs-bg: url('../../assets/images/bg2.png');
+  --fs-bg: url('../../assets/images/bg2.webp');
 }
 
 #feature-scenes {
-  --fs-bg: url('../../assets/images/bg3.png');
+  --fs-bg: url('../../assets/images/bg3.webp');
 }
 
 .feature-showcase {
