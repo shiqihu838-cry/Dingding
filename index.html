@@ -395,7 +395,6 @@
         id="feature-transcribe"
         data-feature-showcase
         data-reveal
-        style="--fs-bg: url('assets/images/bg1.png')"
         aria-labelledby="feature-transcribe-title"
       >
         <div class="feature-showcase__bg" aria-hidden="true"></div>
@@ -464,7 +463,6 @@
         id="feature-summary"
         data-feature-showcase
         data-reveal
-        style="--fs-bg: url('assets/images/bg2.png')"
         aria-labelledby="feature-summary-title"
       >
         <div class="feature-showcase__bg" aria-hidden="true"></div>
@@ -533,7 +531,6 @@
         id="feature-scenes"
         data-feature-showcase
         data-reveal
-        style="--fs-bg: url('assets/images/bg3.png')"
         aria-labelledby="feature-scenes-title"
       >
         <div class="feature-showcase__bg" aria-hidden="true"></div>
@@ -603,95 +600,117 @@
         data-reveal
         aria-labelledby="pricing-title"
       >
-        <div class="container">
-          <div class="section__intro">
-            <h2 id="pricing-title">立即使用 AI 听记，按需选择版本</h2>
-            <p>
-              个人与企业均可使用；以下为常见档位摘要，完整对比见设计稿导出的对照表。
-            </p>
+        <div class="container pricing__container">
+          <div class="section__intro section__intro--pricing">
+            <h2 id="pricing-title">立即使用 AI 听记，不同版本按需选择</h2>
+          </div>
+
+          <div class="pricing-tabs" role="tablist" aria-label="版本类型">
+            <button class="pricing-tab pricing-tab--active" type="button" role="tab" aria-selected="true">
+              个人
+            </button>
+            <button class="pricing-tab" type="button" role="tab" aria-selected="false">
+              企业
+            </button>
           </div>
 
           <div class="pricing-grid">
-            <article class="price-card">
-              <div class="price-card__row">
-                <span class="price-card__price">￥0</span>
-                <span class="price-card__sub">基础功能试用体验</span>
+            <article class="price-card price-card--standard">
+              <div class="price-card__hero">
+                <h3>标准会员</h3>
+                <p>基础功能试用体验</p>
               </div>
-              <h3>标准会员</h3>
-              <ul>
-                <li>300分钟/月 转写时长</li>
-                <li>5篇/月 图文纪要</li>
-                <li>30次/月 AI问答</li>
-              </ul>
-              <button type="button">选择此版本</button>
+              <div class="price-card__content">
+                <div class="price-card__price-row">
+                  <span class="price-card__currency">￥</span>
+                  <span class="price-card__amount">0</span>
+                </div>
+                <button class="price-card__button price-card__button--ghost" type="button">立即体验</button>
+                <ul>
+                  <li>300分钟/月 转写时长</li>
+                  <li>5篇/月 图文纪要</li>
+                  <li>30次/月 AI问答</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="price-card price-card--highlight">
-              <div class="price-card__row">
-                <span class="price-card__price">￥59</span>
-                <span class="price-card__sub">/人/月</span>
+            <article class="price-card price-card--premium">
+              <div class="price-card__hero">
+                <h3>高级会员</h3>
+                <p>每月3000分钟语音转写</p>
               </div>
-              <h3>高级会员</h3>
-              <ul>
-                <li>3000分钟/月 转写时长</li>
-                <li>50篇/月 图文纪要</li>
-                <li>300次/月 AI问答</li>
-              </ul>
-              <button type="button">选择此版本</button>
+              <div class="price-card__content">
+                <div class="price-card__price-row">
+                  <span class="price-card__currency">￥</span>
+                  <span class="price-card__amount">59</span>
+                  <span class="price-card__unit">/人/月</span>
+                </div>
+                <button class="price-card__button" type="button">立即购买</button>
+                <ul>
+                  <li>3000分钟/月 转写时长</li>
+                  <li>50篇/月 图文纪要</li>
+                  <li>300次/月 AI问答</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="price-card">
-              <div class="price-card__row">
-                <span class="price-card__price">￥119</span>
-                <span class="price-card__sub">/人/月</span>
+            <article class="price-card price-card--flagship">
+              <span class="price-card__badge">最受欢迎</span>
+              <div class="price-card__hero">
+                <h3>旗舰会员</h3>
+                <p>畅享无限量语音转写</p>
               </div>
-              <h3>旗舰会员</h3>
-              <ul>
-                <li>无限量 转写时长</li>
-                <li>不限篇数 图文纪要</li>
-                <li>不限次数 AI问答</li>
-              </ul>
-              <button type="button">选择此版本</button>
+              <div class="price-card__content">
+                <div class="price-card__price-row">
+                  <span class="price-card__currency">￥</span>
+                  <span class="price-card__amount">119</span>
+                  <span class="price-card__unit">/人/月</span>
+                </div>
+                <button class="price-card__button" type="button">立即购买</button>
+                <ul>
+                  <li>无限量 转写时长</li>
+                  <li>不限篇数 图文纪要</li>
+                  <li>不限次数 AI问答</li>
+                </ul>
+              </div>
             </article>
           </div>
 
-          <div class="pricing-table-wrap">
-            <img
-              src="assets/images/figma-pricing-475-1521.png"
-              width="1440"
-              height="900"
-              alt="版本与功能权益详细对比"
-              loading="lazy"
-              decoding="async"
-            />
+          <div class="pricing-compare">
+            <button class="pricing-compare__button" type="button">
+              查看AI听记版本对比
+              <svg class="pricing-compare__chevron" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true">
+                <path
+                  d="M1.5 3.25L6 7.75L10.5 3.25"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
           </div>
+
+        </div>
+        <div class="pricing-bottom-visual" aria-hidden="true">
+          <img
+            src="assets/images/底部.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
-      <footer class="footer-cta" id="contact" data-reveal>
-        <div class="footer-cta__glow1" aria-hidden="true"></div>
-        <div class="footer-cta__glow2" aria-hidden="true"></div>
-        <div class="container footer-cta__inner">
-          <h2>立即使用 AI 听记，AI 时代的记录方式</h2>
-          <p class="footer-cta__lead">
-            帮助文档、下载钉钉与在线客服入口与官网信息架构一致，便于用户随时获得支持。
-          </p>
-          <div class="footer-cta__actions">
-            <button type="button" class="btn-footer-solid">立即体验</button>
-            <button type="button" class="btn-footer-outline">下载钉钉</button>
-          </div>
-
-          <div class="footer-dock">
-            <div class="footer-dock__links">
-              <a href="#pricing"><span class="icon" aria-hidden="true">¥</span>查看定价</a>
-              <a href="#"><span class="icon" aria-hidden="true">?</span>帮助中心</a>
-              <a href="#"><span class="icon" aria-hidden="true">⌘</span>在线客服</a>
-              <a href="#"><span class="icon" aria-hidden="true">📖</span>操作手册</a>
-            </div>
-          </div>
-
-          <p class="footer-cta__copy">© 2026 钉钉 AI 听记</p>
-        </div>
+      <footer class="footer-cta" id="contact">
+        <img
+          class="footer-cta__image"
+          src="assets/images/最底部.png"
+          alt="立即使用 AI 听记，AI 时代的记录方式"
+          loading="lazy"
+          decoding="async"
+        />
       </footer>
     </main>
 

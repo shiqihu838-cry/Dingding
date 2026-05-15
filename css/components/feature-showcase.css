@@ -1,5 +1,18 @@
 /* 三列功能展示：全宽背景图 + 文案/卡片 + 悬停切换预览图 */
 
+/* 三屏底图分别对应 bg1 / bg2 / bg3；区块本身 100vw breakout，背景 cover 横向贴齐视口 */
+#feature-transcribe {
+  --fs-bg: url('../../assets/images/bg1.png');
+}
+
+#feature-summary {
+  --fs-bg: url('../../assets/images/bg2.png');
+}
+
+#feature-scenes {
+  --fs-bg: url('../../assets/images/bg3.png');
+}
+
 .feature-showcase {
   position: relative;
   isolation: isolate;
@@ -9,16 +22,43 @@
   margin-right: calc(50% - 50vw);
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   padding: clamp(3.25rem, 7vw, 5.25rem) 0;
+}
+
+/* 相邻两屏底图接缝处偶发细缝：微重叠 */
+.feature-showcase + .feature-showcase {
+  margin-top: -1px;
+}
+
+/* 移动端保留首个功能区与场景卡片之间的呼吸感 */
+.section--scene-cards + .feature-showcase {
+  padding-top: clamp(4rem, 6.5vw, 6.5rem);
+}
+
+@media (min-width: 900px) {
+  .feature-showcase {
+    height: calc(100vh - 4.125rem);
+    height: calc(100svh - 4.125rem);
+    min-height: calc(100vh - 4.125rem);
+    min-height: calc(100svh - 4.125rem);
+    padding: 0;
+  }
+
+  .section--scene-cards + .feature-showcase {
+    padding-top: 0;
+  }
 }
 
 .feature-showcase__bg {
   position: absolute;
-  inset: 0;
+  /* 略大于可视区块：等效放大 cover，减轻底图上下留白与两屏之间空隙 */
+  inset: -6% -4%;
   z-index: 0;
   background-image: var(--fs-bg, none);
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   pointer-events: none;
 }
@@ -26,6 +66,10 @@
 .feature-showcase__inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  /* 略宽于默认 .container，让三屏文案更靠中、留白更足 */
+  padding-inline: clamp(2rem, 6.5vw, 3.25rem);
 }
 
 .feature-showcase__grid {
@@ -35,17 +79,55 @@
 }
 
 @media (min-width: 900px) {
+  .feature-showcase__inner {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(6rem, 13vw, 15rem);
+  }
+
+  /* 文案列略宽于预览列；略收一档避免横向拉得过长 */
   .feature-showcase__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2.25rem, 4.5vw, 4rem);
+    align-items: center;
+    max-width: min(72rem, 100%);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .feature-showcase--reverse .feature-showcase__grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  .feature-showcase__copy {
+    max-width: min(33rem, 100%);
+    width: 100%;
+    justify-self: start;
+  }
+
+  .feature-showcase__media {
+    max-width: min(37rem, 100%);
+    width: 100%;
+    justify-self: end;
   }
 
   .feature-showcase--reverse .feature-showcase__media {
     order: -1;
+    justify-self: start;
   }
+
+  .feature-showcase--reverse .feature-showcase__copy {
+    justify-self: end;
+  }
+}
+
+.feature-showcase__copy {
+  --feature-copy-inline: 1.75rem;
 }
 
 .feature-showcase__title {
   margin: 0;
+  padding-inline-start: var(--feature-copy-inline);
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 600;
   line-height: 1.35;
@@ -57,31 +139,41 @@
   margin-top: clamp(1.25rem, 3vw, 1.75rem);
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: clamp(0.85rem, 2.2vh, 1.35rem);
 }
 
 .feature-showcase__card {
   width: 100%;
   margin: 0;
-  padding: 1rem 1.125rem;
+  padding: 1.125rem var(--feature-copy-inline, 1.75rem);
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   cursor: pointer;
   text-align: left;
   font: inherit;
   color: inherit;
-  background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
   transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.35s ease,
     transform 0.2s ease;
+}
+
+/* 当前选中：与未选中视觉一致（仅 JS / aria 标记），无描边、无白底 */
+.feature-showcase__card.is-active {
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .feature-showcase__card h3 {
   margin: 0;
-  font-size: 1.0625rem;
-  font-weight: 600;
+  font-size: calc(1.0625rem + 4px);
+  font-weight: 400;
   line-height: 1.35;
   color: var(--color-ink);
   transition: color 0.2s ease;
@@ -94,33 +186,44 @@
   color: rgba(0, 0, 0, 0.55);
 }
 
+/* 悬停 / 聚焦：纯白底 + 设计稿投影（X3 Y3 模糊 28.6 扩展 0，#4ABAFF 30%） */
 .feature-showcase__card:hover,
 .feature-showcase__card:focus-visible {
   background: #fff;
-  box-shadow:
-    0 0 0 1px rgba(0, 137, 255, 0.12),
-    0 12px 36px rgba(0, 137, 255, 0.22),
-    0 28px 64px rgba(86, 83, 255, 0.08);
+  border: none;
+  box-shadow: 3px 3px 28.6px 0 rgba(74, 186, 255, 0.3);
   transform: translateY(-1px);
   outline: none;
 }
 
+/* 悬停 / 聚焦：标题蓝紫渐变字（与「立即体验」等主色一致） */
 .feature-showcase__card:hover h3,
-.feature-showcase__card:focus-visible h3,
-.feature-showcase__card.is-active h3 {
-  color: var(--color-accent);
+.feature-showcase__card:focus-visible h3 {
+  background: linear-gradient(100deg, #057dff 0%, #4f46e5 45%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-.feature-showcase__card.is-active {
-  background: #fff;
-  box-shadow:
-    0 0 0 1px rgba(0, 137, 255, 0.14),
-    0 12px 36px rgba(0, 137, 255, 0.24),
-    0 28px 64px rgba(86, 83, 255, 0.1);
+@supports not (background-clip: text) {
+  .feature-showcase__card:hover h3,
+  .feature-showcase__card:focus-visible h3 {
+    color: #5653ff;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
 .feature-showcase__cta {
-  margin-top: clamp(1.25rem, 3vw, 1.75rem);
+  margin-top: clamp(1.35rem, 3vw, 1.9rem);
+  padding-inline-start: var(--feature-copy-inline, 1.75rem);
+}
+
+.feature-showcase__cta .btn-hero-primary {
+  min-width: 7.25rem;
+  height: 2.8125rem;
+  padding: 0 0.9375rem;
+  font-size: 1.125rem;
 }
 
 .feature-showcase__frame {

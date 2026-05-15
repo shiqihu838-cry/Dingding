@@ -3,9 +3,8 @@
 .section--scene-cards {
   position: relative;
   overflow: hidden;
-  /* 底图与内容叠在同一格：行高随内容，图仅横向 100%、纵向不裁切 */
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  /* 背景层脱离文档流，区块高度只由卡片内容和留白决定 */
+  display: block;
   /* 与视口同宽（父级有 max-width 时仍铺满屏幕） */
   width: 100vw;
   max-width: 100vw;
@@ -14,32 +13,31 @@
   box-sizing: border-box;
   background-color: #fff;
   padding-top: clamp(3.5rem, 8vw, 5.5rem);
-  /* 底部留白：略短于前，区块与 scrub 更早「收尾」 */
-  padding-bottom: clamp(4.5rem, 22vh, 14rem);
+  /* 底部留白：与下一屏功能展示衔接更紧 */
+  padding-bottom: clamp(5rem, 14vh, 9.5rem);
 }
 
-/* 底图：宽度 100%，高度随比例，不裁切；与 inner 同格叠在底层 */
+/* 底图铺满场景区，不再参与区块高度计算 */
 .section--scene-cards > .scene-cards__bg {
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
   z-index: 0;
-  align-self: start;
-  justify-self: stretch;
+  overflow: hidden;
   pointer-events: none;
 }
 
 .section--scene-cards .scene-cards__bg-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: none;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .section--scene-cards > .scene-cards__inner {
-  grid-area: 1 / 1;
   position: relative;
   z-index: 1;
-  align-self: stretch;
-  justify-self: stretch;
 }
 
 .scene-cards__intro {
@@ -106,10 +104,8 @@
   margin-inline: auto;
   border-radius: 1.5rem;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow:
-    0 4px 6px rgba(15, 23, 42, 0.03),
-    0 18px 44px rgba(86, 83, 255, 0.07);
+  border: none;
+  box-shadow: none;
   opacity: 0;
   transform-origin: 50% 50%;
   /* 初始帧由 JS 按滚动覆盖；无 transition，保证与滚动 1:1 */
@@ -122,11 +118,9 @@
   transform: translate3d(var(--scene-enter-x), 0, 0) rotate(var(--scene-enter-rot));
 }
 
-.scene-card:hover {
-  box-shadow:
-    0 6px 12px rgba(15, 23, 42, 0.05),
-    0 12px 32px rgba(5, 125, 255, 0.09),
-    0 0 32px rgba(5, 125, 255, 0.11);
+.scene-card:hover,
+.scene-card:focus-within {
+  box-shadow: 3px 3px 28.6px 0 rgba(74, 186, 255, 0.3);
 }
 
 .scene-card__body {

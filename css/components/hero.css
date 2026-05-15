@@ -397,11 +397,11 @@
     flex-direction: column;
     align-items: stretch;
     box-sizing: border-box;
-    width: calc(115px * var(--float-dock-scale));
-    min-width: calc(115px * var(--float-dock-scale));
-    max-width: calc(115px * var(--float-dock-scale));
-    padding: calc(4px * var(--float-dock-scale)) 0;
-    gap: calc(2px * var(--float-dock-scale));
+    width: calc(136px * var(--float-dock-scale));
+    min-width: calc(136px * var(--float-dock-scale));
+    max-width: calc(136px * var(--float-dock-scale));
+    padding: calc(8px * var(--float-dock-scale));
+    gap: calc(3px * var(--float-dock-scale));
     position: fixed;
     /* 与视口边缘留白略大，并相对右下角略向左上收一点 */
     right: 2rem;
@@ -420,12 +420,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    height: calc(65px * var(--float-dock-scale));
-    min-height: calc(65px * var(--float-dock-scale));
-    padding: calc(13px * var(--float-dock-scale)) calc(15px * var(--float-dock-scale));
+    height: calc(61px * var(--float-dock-scale));
+    min-height: calc(61px * var(--float-dock-scale));
+    padding: calc(13px * var(--float-dock-scale)) calc(10px * var(--float-dock-scale));
     gap: calc(6px * var(--float-dock-scale));
-    border-radius: 0;
+    border-radius: calc(10px * var(--float-dock-scale));
     font-family: inherit;
     font-size: calc(16px * var(--float-dock-scale));
     font-weight: 400;
@@ -473,7 +474,7 @@
   }
 
   .float-dock__label {
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 0;
     white-space: nowrap;
   }
