@@ -308,6 +308,16 @@
   }
 }
 
+@media (min-width: 1600px) {
+  .hero-video-scroll-zone {
+    padding-top: clamp(10rem, 12vw, 13rem);
+  }
+
+  .hero-video-sticky {
+    --hero-video-sticky-max-width: min(100%, 80rem);
+  }
+}
+
 .hero-video-scroll-zone__inner {
   display: flex;
   align-items: flex-start;
@@ -320,7 +330,7 @@
   top: calc(50vh + var(--hero-video-center-offset, 0px) - var(--hero-video-half, 12rem));
   z-index: 3;
   width: 100%;
-  max-width: min(100%, 68rem);
+  max-width: var(--hero-video-sticky-max-width, min(100%, 68rem));
   margin-inline: auto;
 }
 
@@ -397,10 +407,10 @@
     flex-direction: column;
     align-items: stretch;
     box-sizing: border-box;
-    width: calc(136px * var(--float-dock-scale));
-    min-width: calc(136px * var(--float-dock-scale));
-    max-width: calc(136px * var(--float-dock-scale));
-    padding: calc(8px * var(--float-dock-scale));
+    width: calc(128px * var(--float-dock-scale));
+    min-width: calc(128px * var(--float-dock-scale));
+    max-width: calc(128px * var(--float-dock-scale));
+    padding: calc(5px * var(--float-dock-scale));
     gap: calc(3px * var(--float-dock-scale));
     position: fixed;
     /* 与视口边缘留白略大，并相对右下角略向左上收一点 */
@@ -456,8 +466,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(16px * var(--float-dock-scale));
-    height: calc(16px * var(--float-dock-scale));
+    width: calc(18px * var(--float-dock-scale));
+    height: calc(18px * var(--float-dock-scale));
     color: rgba(0, 0, 0, 0.45);
   }
 
@@ -466,6 +476,7 @@
     flex-shrink: 0;
     width: calc(14px * var(--float-dock-scale));
     height: calc(14px * var(--float-dock-scale));
+    overflow: visible;
   }
 
   .float-dock__link:last-child .float-dock__icon svg {

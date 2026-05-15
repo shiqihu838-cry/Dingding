@@ -6,6 +6,7 @@ import { initVideo } from './modules/video.js'
 import { initHeroVideoScale } from './modules/hero-video-scale.js'
 import { initHeroFloats } from './modules/hero-floats.js'
 import { initHeroContentParallax } from './modules/hero-content-parallax.js'
+import { initPricingTabs } from './modules/pricing-tabs.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   initNav()
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal()
   initSceneCardsReveal()
   initFeatureShowcases()
+  initPricingTabs()
 })

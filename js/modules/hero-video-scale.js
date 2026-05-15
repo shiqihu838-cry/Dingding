@@ -5,8 +5,6 @@ export function initHeroVideoScale() {
   if (!zone || !sticky || !target) return
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
-  const initialWidthRem = 45
-  const maxWidthRem = 62
   const scrollSpanVh = 0.95
   const easeStrength = 0.095
 
@@ -19,6 +17,10 @@ export function initHeroVideoScale() {
     parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
+  const getVideoWidthConfig = () =>
+    window.innerWidth >= 1600
+      ? { initialWidthRem: 80, maxWidthRem: 80 }
+      : { initialWidthRem: 45, maxWidthRem: 62 }
 
   const setStickyHalfVar = () => {
     const height = target.offsetHeight || sticky.offsetHeight
@@ -37,6 +39,7 @@ export function initHeroVideoScale() {
     }
 
     const stickyWidth = sticky.offsetWidth
+    const { initialWidthRem, maxWidthRem } = getVideoWidthConfig()
     const maxWidth = Math.min(Math.max(window.innerWidth - 32, 320), maxWidthRem * remPx())
     const initialWidth = Math.min(maxWidth, initialWidthRem * remPx())
     const minScale = stickyWidth > initialWidth ? initialWidth / stickyWidth : 1

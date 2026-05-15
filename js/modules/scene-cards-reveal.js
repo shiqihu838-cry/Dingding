@@ -1,6 +1,6 @@
 /**
- * 「我们支持哪些场景」：卡片随滚动进度 scrub 归位（左右交替），
- * 参考 outcrowd.io 式 scroll-linked 动画；与滚动 1:1，无 CSS transition 抢进度。
+ * 「我们支持哪些场景」：卡片随滚动目标进度缓动归位（左右交替），
+ * 滚动只更新目标值，实际画面用 requestAnimationFrame 追随，松手后仍保留一小段丝滑惯性。
  * 卡片晚于标题：用 CARD_GLOBAL_HOLD（原始全局 p）做门槛，勿把「死区」叠在 p/0.72 后。
  * CARD_PHASE_COMPRESS 越小，卡片越早跑满进度（更早结束 scrub）。
  */
@@ -10,6 +10,7 @@ const MAX_ROT = 13
 const CARD_GLOBAL_HOLD = 0.28
 /** 卡片在剩余 (1-hold) 里略压缩时间轴；越小越早满进度（更早「结束」） */
 const CARD_PHASE_COMPRESS = 0.62
+const EASE_STRENGTH = 0.13
 
 function clamp01(v) {
   return Math.min(1, Math.max(0, v))
@@ -86,25 +87,66 @@ export function initSceneCardsReveal() {
     return
   }
 
-  let raf = 0
-  const tick = () => {
-    raf = 0
+  let measureRaf = 0
+  let renderRaf = 0
+  let isRendering = false
+  let currentIntroP = null
+  let currentCardP = null
+  let targetIntroP = 0
+  let targetCardP = 0
+
+  const measure = () => {
+    measureRaf = 0
     const p = globalScrollProgress(section)
-    applyIntro(intro, p)
+    targetIntroP = p
     /* 标题仍跟全局 p；卡片在「原始 p」上晚起步，避免先 /0.72 放大再减 dead 几乎看不出 */
     const afterHold = clamp01((p - CARD_GLOBAL_HOLD) / (1 - CARD_GLOBAL_HOLD))
-    const cardP = clamp01(afterHold / CARD_PHASE_COMPRESS)
-    applyCards(cards, cardP)
+    targetCardP = clamp01(afterHold / CARD_PHASE_COMPRESS)
+
+    startRender()
+  }
+
+  const render = () => {
+    renderRaf = 0
+
+    if (currentIntroP === null) currentIntroP = targetIntroP
+    if (currentCardP === null) currentCardP = targetCardP
+
+    currentIntroP += (targetIntroP - currentIntroP) * EASE_STRENGTH
+    currentCardP += (targetCardP - currentCardP) * EASE_STRENGTH
+
+    if (Math.abs(targetIntroP - currentIntroP) < 0.001) currentIntroP = targetIntroP
+    if (Math.abs(targetCardP - currentCardP) < 0.001) currentCardP = targetCardP
+
+    applyIntro(intro, currentIntroP)
+    applyCards(cards, currentCardP)
+
+    if (currentIntroP !== targetIntroP || currentCardP !== targetCardP) {
+      renderRaf = requestAnimationFrame(render)
+    } else {
+      isRendering = false
+    }
+  }
+
+  const startRender = () => {
+    if (isRendering) return
+    isRendering = true
+    renderRaf = requestAnimationFrame(render)
   }
 
   const onScrollOrResize = () => {
-    if (!raf) raf = requestAnimationFrame(tick)
+    if (!measureRaf) measureRaf = requestAnimationFrame(measure)
   }
 
   window.addEventListener('scroll', onScrollOrResize, { passive: true })
   window.addEventListener('resize', onScrollOrResize, { passive: true })
   reduce.addEventListener('change', () => {
     if (reduce.matches) {
+      cancelAnimationFrame(measureRaf)
+      cancelAnimationFrame(renderRaf)
+      measureRaf = 0
+      renderRaf = 0
+      isRendering = false
       intro.style.opacity = '1'
       intro.style.transform = 'none'
       cards.forEach((c) => {
@@ -112,9 +154,11 @@ export function initSceneCardsReveal() {
         c.style.transform = 'none'
       })
     } else {
-      tick()
+      currentIntroP = null
+      currentCardP = null
+      measure()
     }
   })
 
-  tick()
+  measure()
 }

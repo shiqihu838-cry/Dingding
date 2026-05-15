@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>钉钉 AI 听记</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="icon" type="image/png" href="assets/images/0.png" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -409,7 +409,7 @@
                   type="button"
                   class="feature-showcase__card is-active"
                   aria-pressed="true"
-                  data-preview-src="assets/images/hero-poster.png"
+                  data-preview-src="assets/images/逐字稿.png"
                   data-preview-alt="全量记录逐字稿：转写界面预览"
                 >
                   <h3>全量记录逐字稿</h3>
@@ -419,7 +419,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/figma-frame-475-1340.png"
+                  data-preview-src="assets/images/语言翻译.png"
                   data-preview-alt="多语言翻译：纪要长图预览"
                 >
                   <h3>一键多语言翻译</h3>
@@ -429,7 +429,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/figma-hero-mockup-352-1449.png"
+                  data-preview-src="assets/images/区分发言人.png"
                   data-preview-alt="发言人区分：产品界面预览"
                 >
                   <h3>智能区分发言人</h3>
@@ -445,7 +445,7 @@
                 <img
                   class="feature-showcase__preview"
                   data-feature-preview
-                  src="assets/images/hero-poster.png"
+                  src="assets/images/逐字稿.png"
                   width="800"
                   height="520"
                   alt="全量记录逐字稿：转写界面预览"
@@ -477,7 +477,7 @@
                   type="button"
                   class="feature-showcase__card is-active"
                   aria-pressed="true"
-                  data-preview-src="assets/images/figma-ecosystem-mockup-352-1509.png"
+                  data-preview-src="assets/images/逐字稿.png"
                   data-preview-alt="智能图文纪要预览"
                 >
                   <h3>智能总结图文纪要</h3>
@@ -487,7 +487,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/figma-frame-475-1340.png"
+                  data-preview-src="assets/images/语言翻译.png"
                   data-preview-alt="结构化章节纪要预览"
                 >
                   <h3>结构化章节纪要</h3>
@@ -497,7 +497,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/image.png"
+                  data-preview-src="assets/images/区分发言人.png"
                   data-preview-alt="待办任务提取预览"
                 >
                   <h3>自动提取待办任务</h3>
@@ -513,7 +513,7 @@
                 <img
                   class="feature-showcase__preview"
                   data-feature-preview
-                  src="assets/images/figma-ecosystem-mockup-352-1509.png"
+                  src="assets/images/逐字稿.png"
                   width="704"
                   height="1509"
                   alt="智能图文纪要预览"
@@ -545,7 +545,7 @@
                   type="button"
                   class="feature-showcase__card is-active"
                   aria-pressed="true"
-                  data-preview-src="assets/images/figma-cards-430-1260.png"
+                  data-preview-src="assets/images/逐字稿.png"
                   data-preview-alt="专业热词识别预览"
                 >
                   <h3>专业热词精准识别</h3>
@@ -555,7 +555,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/hero-poster-cropped.png"
+                  data-preview-src="assets/images/语言翻译.png"
                   data-preview-alt="多场景摘要模板预览"
                 >
                   <h3>多场景摘要模板</h3>
@@ -565,7 +565,7 @@
                   type="button"
                   class="feature-showcase__card"
                   aria-pressed="false"
-                  data-preview-src="assets/images/figma-pricing-475-1521.png"
+                  data-preview-src="assets/images/区分发言人.png"
                   data-preview-alt="灵活定制模板预览"
                 >
                   <h3>灵活定制模板</h3>
@@ -581,7 +581,7 @@
                 <img
                   class="feature-showcase__preview"
                   data-feature-preview
-                  src="assets/images/figma-cards-430-1260.png"
+                  src="assets/images/逐字稿.png"
                   width="860"
                   height="1260"
                   alt="专业热词识别预览"
@@ -605,11 +605,11 @@
             <h2 id="pricing-title">立即使用 AI 听记，不同版本按需选择</h2>
           </div>
 
-          <div class="pricing-tabs" role="tablist" aria-label="版本类型">
-            <button class="pricing-tab pricing-tab--active" type="button" role="tab" aria-selected="true">
+          <div class="pricing-tabs" role="tablist" aria-label="版本类型" data-pricing-tabs>
+            <button class="pricing-tab pricing-tab--active" type="button" role="tab" aria-selected="true" data-pricing-type="member">
               个人
             </button>
-            <button class="pricing-tab" type="button" role="tab" aria-selected="false">
+            <button class="pricing-tab" type="button" role="tab" aria-selected="false" data-pricing-type="account">
               企业
             </button>
           </div>
@@ -617,7 +617,7 @@
           <div class="pricing-grid">
             <article class="price-card price-card--standard">
               <div class="price-card__hero">
-                <h3>标准会员</h3>
+                <h3 data-member-title="标准会员" data-account-title="标准账号">标准会员</h3>
                 <p>基础功能试用体验</p>
               </div>
               <div class="price-card__content">
@@ -636,7 +636,7 @@
 
             <article class="price-card price-card--premium">
               <div class="price-card__hero">
-                <h3>高级会员</h3>
+                <h3 data-member-title="高级会员" data-account-title="高级账号">高级会员</h3>
                 <p>每月3000分钟语音转写</p>
               </div>
               <div class="price-card__content">
@@ -657,7 +657,7 @@
             <article class="price-card price-card--flagship">
               <span class="price-card__badge">最受欢迎</span>
               <div class="price-card__hero">
-                <h3>旗舰会员</h3>
+                <h3 data-member-title="旗舰会员" data-account-title="旗舰账号">旗舰会员</h3>
                 <p>畅享无限量语音转写</p>
               </div>
               <div class="price-card__content">
