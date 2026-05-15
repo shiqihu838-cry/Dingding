@@ -84,7 +84,7 @@
   width: 100%;
   height: auto;
   max-width: none;
-  opacity: 0.78;
+  opacity: 1;
   animation-name: heroFloatDrift;
   animation-duration: var(--float-duration, 12s);
   animation-timing-function: ease-in-out;
@@ -95,7 +95,7 @@
 
 .hero-float--triangle {
   left: 22%;
-  top: clamp(20rem, 27vw, 27rem);
+  top: clamp(17rem, 24vw, 24rem);
   width: clamp(19rem, 27vw, 35rem);
   z-index: 2;
   --float-base-x: -50%;
@@ -106,7 +106,7 @@
 
 .hero-float--left-card {
   left: 4.5%;
-  top: clamp(28rem, 38vw, 38rem);
+  top: clamp(25rem, 35vw, 35rem);
   width: clamp(15rem, 20vw, 25rem);
   z-index: 1;
   --float-drift-x: 1.25rem;
@@ -117,7 +117,7 @@
 
 .hero-float--spark {
   right: 15%;
-  top: clamp(18rem, 21vw, 23rem);
+  top: clamp(15rem, 18vw, 20rem);
   width: clamp(8rem, 12vw, 16rem);
   --float-drift-x: 0.75rem;
   --float-drift-y: 1rem;
@@ -127,7 +127,7 @@
 
 .hero-float--right-card {
   right: 8%;
-  top: clamp(36rem, 47vw, 48rem);
+  top: clamp(33rem, 44vw, 45rem);
   width: clamp(18rem, 22vw, 30rem);
   --float-drift-x: -1rem;
   --float-drift-y: 1.5rem;
@@ -148,25 +148,25 @@
 @media (max-width: 1023px) {
   .hero-float--triangle {
     left: 28%;
-    top: 27rem;
+    top: 24rem;
     width: 28rem;
   }
 
   .hero-float--left-card {
     left: -4rem;
-    top: 33rem;
+    top: 30rem;
     width: 16rem;
   }
 
   .hero-float--spark {
     right: -1rem;
-    top: 24rem;
+    top: 21rem;
     width: 9rem;
   }
 
   .hero-float--right-card {
     right: -7rem;
-    top: 48rem;
+    top: 44rem;
     width: 18rem;
   }
 }
@@ -180,6 +180,7 @@
 }
 
 .hero__content {
+  --hero-content-y: 0px;
   width: 100%;
   max-width: 43.5rem;
   margin-inline: auto;
@@ -187,6 +188,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transform: translate3d(0, var(--hero-content-y), 0);
+  will-change: transform;
 }
 
 .hero__title {
@@ -287,14 +290,15 @@
   position: relative;
   z-index: 2;
   min-height: 200vh;
-  padding-top: clamp(3rem, 8vw, 5.5rem);
+  /* 与主文案/按钮的间距（略紧，贴近设计稿首屏比例） */
+  padding-top: clamp(1.75rem, 4.5vw, 3.25rem);
 }
 
 @media (min-width: 1024px) {
   .hero-video-scroll-zone {
     --hero-video-center-offset: 36px;
-    margin-top: clamp(-3.25rem, -3vw, -2.25rem);
-    padding-top: 2.5rem;
+    margin-top: clamp(-4.75rem, -5vw, -3.25rem);
+    padding-top: 1.125rem;
   }
 }
 
@@ -336,7 +340,6 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: 2rem;
-  /* 用 padding 做「居中」加粗描边：色带在内外层之间，与 video 贴死，避免 border+裁切底缝 */
   padding: var(--hero-video-stroke);
   background: #111118;
   line-height: 0;
@@ -372,56 +375,106 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero__content {
+    transform: none;
+    will-change: auto;
+  }
+
   .hero-video {
     will-change: auto;
   }
 }
 
-/* 右侧浮动快捷栏 — 设计稿右侧 dock */
+/* 右侧浮动快捷栏 — Figma 352:1453；--float-dock-scale 整体等比缩放（含字号、间距、圆角） */
 .float-dock {
   display: none;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .float-dock {
+    --float-dock-scale: 0.94;
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: calc(115px * var(--float-dock-scale));
+    min-width: calc(115px * var(--float-dock-scale));
+    max-width: calc(115px * var(--float-dock-scale));
+    padding: calc(4px * var(--float-dock-scale)) 0;
+    gap: calc(2px * var(--float-dock-scale));
     position: fixed;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 40;
-    width: 8.5rem;
-    padding: 0.75rem 0.5rem;
-    border-radius: 0.75rem;
+    /* 与视口边缘留白略大，并相对右下角略向左上收一点 */
+    right: 2rem;
+    bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+    top: auto;
+    transform: none;
+    z-index: 45;
+    border-radius: calc(12px * var(--float-dock-scale));
     background: #fff;
-    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: none;
+    /* Figma 投影（略收 xy）：X 4 Y 5 模糊 17.8 扩展 0，色 #DBF1FF @ 60% */
+    box-shadow: 4px 5px 17.8px 0 rgba(219, 241, 255, 0.6);
   }
 
   .float-dock__link {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.375rem;
-    border-radius: 0.375rem;
-    font-size: 0.8125rem;
-    color: rgba(0, 0, 0, 0.72);
+    box-sizing: border-box;
+    height: calc(65px * var(--float-dock-scale));
+    min-height: calc(65px * var(--float-dock-scale));
+    padding: calc(13px * var(--float-dock-scale)) calc(15px * var(--float-dock-scale));
+    gap: calc(6px * var(--float-dock-scale));
+    border-radius: 0;
+    font-family: inherit;
+    font-size: calc(16px * var(--float-dock-scale));
+    font-weight: 400;
+    line-height: calc(22px * var(--float-dock-scale));
+    letter-spacing: 0;
     text-decoration: none;
+    color: rgba(0, 0, 0, 0.85);
     transition: background 0.15s ease;
   }
 
-  .float-dock__link:hover {
+  .float-dock__link:visited {
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .float-dock__link:hover,
+  .float-dock__link:focus-visible {
     background: rgba(0, 0, 0, 0.04);
-    color: #000;
+    outline: none;
+  }
+
+  .float-dock__link:focus-visible {
+    box-shadow: inset 0 0 0 calc(2px * var(--float-dock-scale)) rgba(59, 130, 246, 0.35);
   }
 
   .float-dock__icon {
     flex-shrink: 0;
-    width: 0.75rem;
-    height: 2px;
-    border-radius: 1px;
-    background: rgba(0, 0, 0, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(16px * var(--float-dock-scale));
+    height: calc(16px * var(--float-dock-scale));
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  .float-dock__icon svg {
+    display: block;
+    flex-shrink: 0;
+    width: calc(14px * var(--float-dock-scale));
+    height: calc(14px * var(--float-dock-scale));
+  }
+
+  .float-dock__link:last-child .float-dock__icon svg {
+    width: calc(11px * var(--float-dock-scale));
+    height: calc(14px * var(--float-dock-scale));
+  }
+
+  .float-dock__label {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
   }
 }

@@ -1,0 +1,400 @@
+/* 我们支持哪些场景 — 卡片左右交替 + 旋转归位，结束时与网格完全对齐 */
+
+.section--scene-cards {
+  position: relative;
+  overflow: hidden;
+  /* 底图与内容叠在同一格：行高随内容，图仅横向 100%、纵向不裁切 */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  /* 与视口同宽（父级有 max-width 时仍铺满屏幕） */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-top: clamp(3.5rem, 8vw, 5.5rem);
+  /* 底部留白：略短于前，区块与 scrub 更早「收尾」 */
+  padding-bottom: clamp(4.5rem, 22vh, 14rem);
+}
+
+/* 底图：宽度 100%，高度随比例，不裁切；与 inner 同格叠在底层 */
+.section--scene-cards > .scene-cards__bg {
+  grid-area: 1 / 1;
+  z-index: 0;
+  align-self: start;
+  justify-self: stretch;
+  pointer-events: none;
+}
+
+.section--scene-cards .scene-cards__bg-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+.section--scene-cards > .scene-cards__inner {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.scene-cards__intro {
+  max-width: 52rem;
+  margin-inline: auto;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(0, 1.125rem, 0);
+  transition: none;
+  will-change: opacity, transform;
+}
+
+.scene-cards__intro h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.375rem);
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.scene-cards__intro p {
+  margin: 1rem 0 0;
+  font-size: clamp(0.9375rem, 1.6vw, 1.125rem);
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.scene-cards__grid {
+  /* 行距 / 列距：注意 ≥1024px 的 @media 里也要用到，勿只改上面一处否则桌面无变化 */
+  --scene-cards-row-gap: 0.3rem;
+  --scene-cards-col-gap: 1.5rem;
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--scene-cards-row-gap);
+  align-items: start;
+  justify-items: center;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 1024px) {
+  .scene-cards__grid {
+    /* 两列等宽略加宽，与行距相同的 gap（不再 1fr 拉满导致中间空一大块） */
+    grid-template-columns: repeat(2, minmax(0, 25.75rem));
+    justify-content: center;
+    gap: var(--scene-cards-row-gap) var(--scene-cards-col-gap);
+  }
+
+  .scene-card:nth-child(2),
+  .scene-card:nth-child(4) {
+    margin-top: clamp(1rem, 2.2vw, 1.75rem);
+  }
+}
+
+.scene-card {
+  --scene-enter-x: clamp(3rem, 11vw, 6rem);
+  --scene-enter-rot: 13deg;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 25.75rem;
+  margin-inline: auto;
+  border-radius: 1.5rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 4px 6px rgba(15, 23, 42, 0.03),
+    0 18px 44px rgba(86, 83, 255, 0.07);
+  opacity: 0;
+  transform-origin: 50% 50%;
+  /* 初始帧由 JS 按滚动覆盖；无 transition，保证与滚动 1:1 */
+  transform: translate3d(calc(-1 * var(--scene-enter-x)), 0, 0) rotate(calc(-1 * var(--scene-enter-rot)));
+  transition: box-shadow 0.35s ease;
+  will-change: opacity, transform;
+}
+
+.scene-cards__grid > .scene-card:nth-child(even) {
+  transform: translate3d(var(--scene-enter-x), 0, 0) rotate(var(--scene-enter-rot));
+}
+
+.scene-card:hover {
+  box-shadow:
+    0 6px 12px rgba(15, 23, 42, 0.05),
+    0 12px 32px rgba(5, 125, 255, 0.09),
+    0 0 32px rgba(5, 125, 255, 0.11);
+}
+
+.scene-card__body {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.75rem 1.5rem 0;
+  text-align: center;
+}
+
+.scene-card__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.scene-card__sub {
+  margin: 0.5rem 0 0;
+  font-size: clamp(0.9375rem, 1.5vw, 1rem);
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+/* 前三张：灰字与蓝链同一行（窄屏可自动折行）；第四张无此行，链接单独跟在标题后 */
+.scene-card__sub-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem 0.625rem;
+  margin-top: 0.5rem;
+}
+
+.scene-card__sub-row .scene-card__sub {
+  margin: 0;
+}
+
+.scene-card__sub-row .scene-card__more {
+  margin: 0;
+}
+
+.scene-card__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: 0.75rem auto 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #057dff;
+  text-decoration: none;
+  transition: color 0.15s ease, gap 0.15s ease;
+}
+
+.scene-card__more:hover {
+  color: #0060cc;
+  gap: 0.35rem;
+}
+
+.scene-card__more span[aria-hidden='true'] {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.scene-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.625rem;
+  padding: 0 1.5rem 1.625rem;
+  box-sizing: border-box;
+}
+
+.scene-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(6.25rem, 34vw, 8.125rem);
+  height: clamp(6.25rem, 34vw, 8.125rem);
+  flex-shrink: 0;
+}
+
+.scene-card__icon-wrap--violet {
+  color: #6d28d9;
+}
+
+.scene-card__icon-wrap svg {
+  width: 55%;
+  height: 55%;
+}
+
+.scene-card__thumb {
+  display: block;
+  max-width: 78%;
+  max-height: 78%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+}
+
+.scene-card__points {
+  margin: 0.875rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: center;
+  max-width: 100%;
+}
+
+.scene-card__points span {
+  position: relative;
+  padding-left: 0.65rem;
+}
+
+.scene-card__points--center span {
+  padding-left: 0;
+}
+
+.scene-card__points--center span::before {
+  display: none;
+}
+
+.scene-card__points span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(109, 40, 217, 0.55);
+}
+
+/* —— 第四张「AI听记」：正文整块居中；装饰图绝对叠在卡片上不占流 —— */
+.scene-card--ai-listen {
+  overflow: hidden;
+}
+
+.scene-card__body--ai-listen {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* 列表下方留白（与 points 的 margin-bottom 一起撑开卡片底） */
+  padding-bottom: 1.9rem;
+  text-align: center;
+}
+
+.scene-card--ai-listen .scene-card__more {
+  margin-top: 0.5rem;
+}
+
+.scene-card__title--stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  line-height: 1.38;
+  font-size: clamp(1.125rem, 2vw, 1.4rem);
+}
+
+.scene-card__title-line {
+  display: block;
+}
+
+.scene-card__title-gradient {
+  background: linear-gradient(100deg, #057dff 0%, #4f46e5 45%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.scene-card__points--ai {
+  margin: 4.5rem auto 0.55rem;
+  width: max-content;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 2.35rem;
+  row-gap: 0.42rem;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+
+.scene-card__points--ai span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.28rem;
+  padding-left: 0;
+  text-align: left;
+  white-space: nowrap;
+  /* 略大于「了解详情」；渐变字 */
+  font-size: calc(0.9375rem + 2px);
+  line-height: 1.45;
+  background: linear-gradient(100deg, #057dff 0%, #4f46e5 45%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.scene-card__points--ai span::before {
+  content: '';
+  position: static;
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.72);
+}
+
+.scene-card--ai-listen .scene-card__float-visual {
+  position: absolute;
+  inset: auto;
+  z-index: 2;
+  display: block;
+  right: clamp(0.65rem, 3vw, 1.35rem);
+  top: 29%;
+  width: clamp(4.5rem, 25vw, 6.75rem);
+  height: auto;
+  max-height: 42%;
+  object-fit: contain;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 10px 26px rgba(99, 102, 241, 0.28));
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .scene-card__points {
+    grid-template-columns: 1fr;
+  }
+
+  .scene-card__points--ai {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 0.35rem;
+    width: 100%;
+    max-width: 18rem;
+    justify-items: center;
+  }
+
+  .scene-card__points--ai span {
+    white-space: normal;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .scene-card--ai-listen .scene-card__float-visual {
+    top: 25%;
+    width: clamp(4rem, 32vw, 5.5rem);
+    right: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-cards__intro,
+  .scene-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

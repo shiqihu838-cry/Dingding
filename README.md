@@ -68,6 +68,19 @@ ffmpeg -y -i "你的源.mp4" -vf "scale='min(1280,iw)':-2" -c:v libx264 -preset 
 
 将仓库根目录下除 `node_modules` 外的文件上传至静态服务器根路径即可；`npm run dev` 仅用于开发，部署不需要 Node。
 
+### 使用 GitHub Pages（推荐与本仓库配套）
+
+1. 在 GitHub 上新建仓库（或推送本仓库到远端），默认分支为 **`main`**。
+2. 打开仓库 **Settings → Pages**。
+3. **Build and deployment** 里，**Source** 选择 **GitHub Actions**（不要选 Deploy from a branch，否则不会跑本仓库的工作流）。
+4. 将代码推送到 **`main`**：根目录已包含工作流 [`.github/workflows/github-pages.yml`](.github/workflows/github-pages.yml)，推送后会自动构建并发布。
+5. 在 **Actions** 标签页可查看运行结果；成功后 **Settings → Pages** 顶部会显示站点地址，形如 `https://<用户名>.github.io/<仓库名>/`。
+6. 根目录下的 **`.nojekyll`** 用于关闭 Jekyll 处理，避免个别静态资源被误处理。
+
+> 本站资源均为相对路径（如 `css/style.css`、`assets/...`），在「项目页」子路径 `/<仓库名>/` 下也可正常加载，无需额外配置 `base`。
+
+若单文件超过 GitHub 的 100MB 限制，需压缩或改用外链托管该资源后再推送。
+
 ## 无障碍与动效
 
 - 支持 `prefers-reduced-motion: reduce`：滚动进场动效会关闭，区块直接显示。

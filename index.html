@@ -256,7 +256,6 @@
                       poster="assets/images/hero-poster.png"
                     >
                       <source src="assets/videos/hero.mp4" type="video/mp4" />
-                      您的浏览器不支持 HTML5 视频。请使用 Chrome / Edge / Safari 等现代浏览器。
                     </video>
                   </div>
                 </div>
@@ -267,137 +266,333 @@
       </section>
 
       <section
-        class="section section--ecosystem"
-        id="ecosystem"
-        data-reveal
-        aria-label="钉钉会议与钉钉电话"
+        class="section section--scene-cards"
+        id="scenarios"
+        data-scene-cards-section
+        aria-labelledby="scenarios-title"
       >
-        <div class="container">
-          <div class="section__media">
-            <div class="section__media-inner">
+        <div class="scene-cards__bg" aria-hidden="true">
+          <img
+            class="scene-cards__bg-img"
+            src="assets/images/Group%202.png"
+            width="2880"
+            height="1620"
+            alt=""
+            decoding="async"
+            fetchpriority="low"
+          />
+        </div>
+        <div class="scene-cards__inner container">
+          <header class="scene-cards__intro" data-scene-cards-intro>
+            <h2 id="scenarios-title">我们支持哪些场景？</h2>
+            <p>
+              支持在线会议、会议纪要、线上培训直播、实时音视频与本地视频集成、会中 AI 听记插入、线下沟通、会议室硬件录制等场景，带来稳定、准确、好用的记录与消费体验。
+            </p>
+          </header>
+
+          <div class="scene-cards__grid">
+            <article class="scene-card">
+              <div class="scene-card__body">
+                <h3 class="scene-card__title">钉钉会议</h3>
+                <div class="scene-card__sub-row">
+                  <p class="scene-card__sub">AI 时代的开会方式</p>
+                  <a class="scene-card__more" href="#">使用手册 <span aria-hidden="true">›</span></a>
+                </div>
+              </div>
+              <div class="scene-card__media" aria-hidden="true">
+                <div class="scene-card__icon-wrap">
+                  <img
+                    class="scene-card__thumb"
+                    src="assets/images/会议.png"
+                    width="160"
+                    height="160"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </article>
+
+            <article class="scene-card">
+              <div class="scene-card__body">
+                <h3 class="scene-card__title">钉钉电话</h3>
+                <div class="scene-card__sub-row">
+                  <p class="scene-card__sub">一站式企业电话服务</p>
+                  <a class="scene-card__more" href="#">了解详情 <span aria-hidden="true">›</span></a>
+                </div>
+              </div>
+              <div class="scene-card__media" aria-hidden="true">
+                <div class="scene-card__icon-wrap">
+                  <img
+                    class="scene-card__thumb"
+                    src="assets/images/电话.png"
+                    width="160"
+                    height="160"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </article>
+
+            <article class="scene-card">
+              <div class="scene-card__body">
+                <h3 class="scene-card__title">会议室 Rooms</h3>
+                <div class="scene-card__sub-row">
+                  <p class="scene-card__sub">走进会议室，开启会议新体验</p>
+                  <a class="scene-card__more" href="#">了解详情 <span aria-hidden="true">›</span></a>
+                </div>
+              </div>
+              <div class="scene-card__media" aria-hidden="true">
+                <div class="scene-card__icon-wrap">
+                  <img
+                    class="scene-card__thumb"
+                    src="assets/images/会议室.png"
+                    width="160"
+                    height="160"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </article>
+
+            <article class="scene-card scene-card--ai-listen">
+              <div class="scene-card__body scene-card__body--ai-listen">
+                <h3 class="scene-card__title scene-card__title--stack">
+                  <span class="scene-card__title-line">全新的「AI听记」</span>
+                  <span class="scene-card__title-line">
+                    带来<span class="scene-card__title-gradient">四大升级</span>
+                  </span>
+                </h3>
+                <a class="scene-card__more" href="#">了解详情 <span aria-hidden="true">›</span></a>
+                <div class="scene-card__points scene-card__points--ai">
+                  <span>更懂客户场景</span>
+                  <span>语音识别更精准</span>
+                  <span>内容消费更便利</span>
+                  <span>AI硬件革新升级</span>
+                </div>
+              </div>
               <img
-                src="assets/images/figma-ecosystem-mockup-352-1509.png"
-                width="2200"
-                height="1400"
-                alt="钉钉会议与办公生态展示"
+                class="scene-card__float-visual"
+                src="assets/images/image.png"
+                width="120"
+                height="120"
+                alt=""
                 loading="lazy"
                 decoding="async"
               />
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="feature-showcase"
+        id="feature-transcribe"
+        data-feature-showcase
+        data-reveal
+        style="--fs-bg: url('assets/images/bg1.png')"
+        aria-labelledby="feature-transcribe-title"
+      >
+        <div class="feature-showcase__bg" aria-hidden="true"></div>
+        <div class="feature-showcase__inner container">
+          <div class="feature-showcase__grid">
+            <div class="feature-showcase__copy">
+              <h2 id="feature-transcribe-title" class="feature-showcase__title">
+                语音转文字，精准记录会议全程
+              </h2>
+              <div class="feature-showcase__cards">
+                <button
+                  type="button"
+                  class="feature-showcase__card is-active"
+                  aria-pressed="true"
+                  data-preview-src="assets/images/hero-poster.png"
+                  data-preview-alt="全量记录逐字稿：转写界面预览"
+                >
+                  <h3>全量记录逐字稿</h3>
+                  <p>视频会议、直播、本地音视频等，精准转写为逐字稿。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/figma-frame-475-1340.png"
+                  data-preview-alt="多语言翻译：纪要长图预览"
+                >
+                  <h3>一键多语言翻译</h3>
+                  <p>支持 79+ 种语言转写翻译，轻松打破跨国沟通壁垒。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/figma-hero-mockup-352-1449.png"
+                  data-preview-alt="发言人区分：产品界面预览"
+                >
+                  <h3>智能区分发言人</h3>
+                  <p>多人共用麦克风？智能声纹识别，精准区分不同说话人。</p>
+                </button>
+              </div>
+              <div class="feature-showcase__cta">
+                <button type="button" class="btn-hero-primary">立即体验 →</button>
+              </div>
+            </div>
+            <div class="feature-showcase__media">
+              <div class="feature-showcase__frame">
+                <img
+                  class="feature-showcase__preview"
+                  data-feature-preview
+                  src="assets/images/hero-poster.png"
+                  width="800"
+                  height="520"
+                  alt="全量记录逐字稿：转写界面预览"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section
-        class="section section--cards"
-        id="feature-cards"
+        class="feature-showcase feature-showcase--reverse"
+        id="feature-summary"
+        data-feature-showcase
         data-reveal
-        aria-labelledby="cards-title"
+        style="--fs-bg: url('assets/images/bg2.png')"
+        aria-labelledby="feature-summary-title"
       >
-        <div class="container">
-          <div class="section__intro">
-            <h2 id="cards-title">场景化能力，一眼看懂</h2>
-            <p>
-              会议、办公与听记能力组合呈现，帮助你快速理解产品价值与使用路径。
-            </p>
-          </div>
-          <div class="section__card-board">
-            <img
-              src="assets/images/figma-cards-430-1260.png"
-              width="1440"
-              height="900"
-              alt="AI 听记场景卡片"
-              loading="lazy"
-              decoding="async"
-            />
+        <div class="feature-showcase__bg" aria-hidden="true"></div>
+        <div class="feature-showcase__inner container">
+          <div class="feature-showcase__grid">
+            <div class="feature-showcase__copy">
+              <h2 id="feature-summary-title" class="feature-showcase__title">
+                智能纪要，1 分钟掌握会议重点
+              </h2>
+              <div class="feature-showcase__cards">
+                <button
+                  type="button"
+                  class="feature-showcase__card is-active"
+                  aria-pressed="true"
+                  data-preview-src="assets/images/figma-ecosystem-mockup-352-1509.png"
+                  data-preview-alt="智能图文纪要预览"
+                >
+                  <h3>智能总结图文纪要</h3>
+                  <p>智能提炼核心内容，自动生成图文摘要，一目了然。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/figma-frame-475-1340.png"
+                  data-preview-alt="结构化章节纪要预览"
+                >
+                  <h3>结构化章节纪要</h3>
+                  <p>自动识别话题段落，生成章节标签与纪要，长内容一目了然。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/image.png"
+                  data-preview-alt="待办任务提取预览"
+                >
+                  <h3>自动提取待办任务</h3>
+                  <p>智能识别待办事项，明确责任人及截止时间，让任务不遗漏。</p>
+                </button>
+              </div>
+              <div class="feature-showcase__cta">
+                <button type="button" class="btn-hero-primary">立即体验 →</button>
+              </div>
+            </div>
+            <div class="feature-showcase__media">
+              <div class="feature-showcase__frame">
+                <img
+                  class="feature-showcase__preview"
+                  data-feature-preview
+                  src="assets/images/figma-ecosystem-mockup-352-1509.png"
+                  width="704"
+                  height="1509"
+                  alt="智能图文纪要预览"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section
-        class="section section--transcription"
-        id="transcription"
+        class="feature-showcase"
+        id="feature-scenes"
+        data-feature-showcase
         data-reveal
-        aria-labelledby="transcription-title"
+        style="--fs-bg: url('assets/images/bg3.png')"
+        aria-labelledby="feature-scenes-title"
       >
-        <div class="container">
-          <p class="kicker">语音转文字</p>
-          <h2 id="transcription-title" class="block-title">
-            语音转文字，精准记录会议全程
-          </h2>
-          <div class="card-grid card-grid--3">
-            <article class="feature-card">
-              <h3>全量记录逐字稿</h3>
-              <p>视频会议、直播、本地音视频等，精准转写为逐字稿。</p>
-            </article>
-            <article class="feature-card">
-              <h3>一键多语言翻译</h3>
-              <p>支持79+种语音转写翻译，轻松打破跨国沟通壁垒。</p>
-            </article>
-            <article class="feature-card">
-              <h3>智能区分发言人</h3>
-              <p>多人共用麦克风？智能声纹识别，精准区分不同说话人。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="section section--summary"
-        id="summary"
-        data-reveal
-        aria-labelledby="summary-title"
-      >
-        <div class="container grid-2">
-          <div>
-            <p class="kicker">智能纪要</p>
-            <h2 id="summary-title" class="block-title">
-              智能纪要，1分钟掌握会议重点
-            </h2>
-            <p class="text-lead">
-              智能提炼核心内容，自动生成图文摘要；自动识别话题段落，生成章节标题与纪要；并智能识别待办事项，明确责任人与截止时间。
-            </p>
-            <button type="button" class="btn-dark-pill">了解智能纪要</button>
-          </div>
-          <div class="media-frame">
-            <img
-              src="assets/images/figma-frame-475-1340.png"
-              width="360"
-              height="1200"
-              alt="智能纪要等功能视觉长图"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="section section--scenarios"
-        id="scenarios"
-        data-reveal
-        aria-labelledby="scenarios-title"
-      >
-        <div class="container">
-          <div class="section__intro">
-            <h2 id="scenarios-title">场景全覆盖，记录更高效</h2>
-            <p>
-              面向专业术语、典型业务场景与组织流程，提供更稳、更省心的记录体验。
-            </p>
-          </div>
-          <div class="scenario-grid">
-            <article class="scenario-card scenario-card--a">
-              <h3>专业热词精准识别</h3>
-              <p>深度优化法律、医疗、金融等专业术语，保障内容准确性。</p>
-            </article>
-            <article class="scenario-card scenario-card--b">
-              <h3>多场景摘要模板</h3>
-              <p>智能识别会议、面试、客户拜访场景，关键信息清晰呈现。</p>
-            </article>
-            <article class="scenario-card scenario-card--c">
-              <h3>灵活定制模板</h3>
-              <p>自由编辑模板字段，轻松适配企业流程，提升协作效率。</p>
-            </article>
+        <div class="feature-showcase__bg" aria-hidden="true"></div>
+        <div class="feature-showcase__inner container">
+          <div class="feature-showcase__grid">
+            <div class="feature-showcase__copy">
+              <h2 id="feature-scenes-title" class="feature-showcase__title">
+                场景全覆盖，记录更高效
+              </h2>
+              <div class="feature-showcase__cards">
+                <button
+                  type="button"
+                  class="feature-showcase__card is-active"
+                  aria-pressed="true"
+                  data-preview-src="assets/images/figma-cards-430-1260.png"
+                  data-preview-alt="专业热词识别预览"
+                >
+                  <h3>专业热词精准识别</h3>
+                  <p>深度优化法务、医疗、金融等专业术语，保证内容准确性。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/hero-poster-cropped.png"
+                  data-preview-alt="多场景摘要模板预览"
+                >
+                  <h3>多场景摘要模板</h3>
+                  <p>智能识别会议、面试、客户拜访等场景，关键信息清晰呈现。</p>
+                </button>
+                <button
+                  type="button"
+                  class="feature-showcase__card"
+                  aria-pressed="false"
+                  data-preview-src="assets/images/figma-pricing-475-1521.png"
+                  data-preview-alt="灵活定制模板预览"
+                >
+                  <h3>灵活定制模板</h3>
+                  <p>支持编辑模板字段，轻松适配企业流程，提升协作效率。</p>
+                </button>
+              </div>
+              <div class="feature-showcase__cta">
+                <button type="button" class="btn-hero-primary">立即体验 →</button>
+              </div>
+            </div>
+            <div class="feature-showcase__media">
+              <div class="feature-showcase__frame">
+                <img
+                  class="feature-showcase__preview"
+                  data-feature-preview
+                  src="assets/images/figma-cards-430-1260.png"
+                  width="860"
+                  height="1260"
+                  alt="专业热词识别预览"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -502,20 +697,52 @@
 
     <aside class="float-dock" aria-label="快捷入口">
       <a class="float-dock__link" href="#pricing">
-        <span class="float-dock__icon" aria-hidden="true"></span>
-        查看定价
+        <span class="float-dock__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M7 0C3.13438 0 0 3.13438 0 7C0 10.8656 3.13438 14 7 14C10.8656 14 14 10.8656 14 7C14 3.13438 10.8656 0 7 0ZM7 12.8125C3.79063 12.8125 1.1875 10.2094 1.1875 7C1.1875 3.79063 3.79063 1.1875 7 1.1875C10.2094 1.1875 12.8125 3.79063 12.8125 7C12.8125 10.2094 10.2094 12.8125 7 12.8125ZM9.49375 3.67188H8.56406C8.51719 3.67188 8.47344 3.69844 8.45312 3.74062L7.0375 6.55312H6.98438L5.56875 3.74062C5.55839 3.72006 5.54254 3.70275 5.52297 3.69062C5.50339 3.67849 5.48084 3.672 5.45781 3.67188H4.50938C4.48906 3.67188 4.46875 3.67656 4.45 3.6875C4.38906 3.72031 4.36719 3.79688 4.4 3.85781L6.14062 7.05781H5.18125C5.1125 7.05781 5.05625 7.11406 5.05625 7.18281V7.65C5.05625 7.71875 5.1125 7.775 5.18125 7.775H6.45781V8.42188H5.18125C5.1125 8.42188 5.05625 8.47812 5.05625 8.54688V9.01406C5.05625 9.08281 5.1125 9.13906 5.18125 9.13906H6.45781V10.2031C6.45781 10.2719 6.51406 10.3281 6.58281 10.3281H7.43125C7.5 10.3281 7.55625 10.2719 7.55625 10.2031V9.13906H8.8375C8.90625 9.13906 8.9625 9.08281 8.9625 9.01406V8.54688C8.9625 8.47812 8.90625 8.42188 8.8375 8.42188H7.55625V7.77344H8.8375C8.90625 7.77344 8.9625 7.71719 8.9625 7.64844V7.18125C8.9625 7.1125 8.90625 7.05625 8.8375 7.05625H7.86875L9.60469 3.85625C9.61406 3.8375 9.62031 3.81719 9.62031 3.79688C9.61875 3.72813 9.5625 3.67188 9.49375 3.67188Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="float-dock__label">查看定价</span>
       </a>
       <a class="float-dock__link" href="#">
-        <span class="float-dock__icon" aria-hidden="true"></span>
-        帮助中心
+        <span class="float-dock__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M7 0C3.13438 0 0 3.13438 0 7C0 10.8656 3.13438 14 7 14C10.8656 14 14 10.8656 14 7C14 3.13438 10.8656 0 7 0ZM7 12.8125C3.79063 12.8125 1.1875 10.2094 1.1875 7C1.1875 3.79063 3.79063 1.1875 7 1.1875C10.2094 1.1875 12.8125 3.79063 12.8125 7C12.8125 10.2094 10.2094 12.8125 7 12.8125Z"
+              fill="currentColor"
+            />
+            <path
+              d="M8.74375 3.94844C8.275 3.5375 7.65625 3.3125 7 3.3125C6.34375 3.3125 5.725 3.53906 5.25625 3.94844C4.76875 4.375 4.5 4.94844 4.5 5.5625V5.68125C4.5 5.75 4.55625 5.80625 4.625 5.80625H5.375C5.44375 5.80625 5.5 5.75 5.5 5.68125V5.5625C5.5 4.87344 6.17344 4.3125 7 4.3125C7.82656 4.3125 8.5 4.87344 8.5 5.5625C8.5 6.04844 8.15625 6.49375 7.62344 6.69844C7.29219 6.825 7.01094 7.04688 6.80938 7.3375C6.60469 7.63437 6.49844 7.99063 6.49844 8.35156V8.6875C6.49844 8.75625 6.55469 8.8125 6.62344 8.8125H7.37344C7.44219 8.8125 7.49844 8.75625 7.49844 8.6875V8.33281C7.49925 8.18113 7.54574 8.03321 7.63187 7.90834C7.71799 7.78347 7.83975 7.68746 7.98125 7.63281C8.90313 7.27813 9.49844 6.46563 9.49844 5.5625C9.5 4.94844 9.23125 4.375 8.74375 3.94844ZM6.375 10.4375C6.375 10.6033 6.44085 10.7622 6.55806 10.8794C6.67527 10.9967 6.83424 11.0625 7 11.0625C7.16576 11.0625 7.32473 10.9967 7.44194 10.8794C7.55915 10.7622 7.625 10.6033 7.625 10.4375C7.625 10.2717 7.55915 10.1128 7.44194 9.99556C7.32473 9.87835 7.16576 9.8125 7 9.8125C6.83424 9.8125 6.67527 9.87835 6.55806 9.99556C6.44085 10.1128 6.375 10.2717 6.375 10.4375Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="float-dock__label">帮助中心</span>
       </a>
       <a class="float-dock__link" href="#">
-        <span class="float-dock__icon" aria-hidden="true"></span>
-        在线客服
+        <span class="float-dock__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 12 12" fill="none">
+            <path
+              d="M6 0C2.68594 0 0 2.68594 0 6V11.625C0 11.8328 0.167187 12 0.375 12H3.25C3.80156 12 4.25 11.5516 4.25 11V7.75C4.25 7.19844 3.80156 6.75 3.25 6.75H1.125V6C1.125 3.30781 3.30781 1.125 6 1.125C8.69219 1.125 10.875 3.30781 10.875 6V6.75H8.75C8.19844 6.75 7.75 7.19844 7.75 7.75V11C7.75 11.5516 8.19844 12 8.75 12H11.625C11.8328 12 12 11.8328 12 11.625V6C12 2.68594 9.31406 0 6 0ZM3.125 7.875V10.875H1.125V7.875H3.125ZM10.875 10.875H8.875V7.875H10.875V10.875Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="float-dock__label">在线客服</span>
       </a>
       <a class="float-dock__link" href="#">
-        <span class="float-dock__icon" aria-hidden="true"></span>
-        操作手册
+        <span class="float-dock__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" viewBox="0 0 11 14" fill="none">
+            <path
+              d="M10.5 0H0.5C0.223437 0 0 0.223437 0 0.5V13.5C0 13.7766 0.223437 14 0.5 14H10.5C10.7766 14 11 13.7766 11 13.5V0.5C11 0.223437 10.7766 0 10.5 0ZM6.4375 1.125H7.9375V4.40469L7.21094 3.875L6.4375 4.42812V1.125ZM9.875 12.875H1.125V1.125H5.5V5.76406C5.5 5.81562 5.51562 5.86719 5.54688 5.90938C5.56584 5.93619 5.58994 5.95898 5.61778 5.97642C5.64561 5.99386 5.67663 6.00561 5.70903 6.01099C5.74143 6.01636 5.77458 6.01526 5.80656 6.00774C5.83853 6.00022 5.8687 5.98644 5.89531 5.96719L7.20469 5.03125L8.47656 5.95937C8.51875 5.99062 8.57031 6.00781 8.62344 6.00781C8.76094 6.00781 8.87344 5.89531 8.87344 5.75781V1.125H9.87344V12.875H9.875Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="float-dock__label">操作手册</span>
       </a>
     </aside>
 
